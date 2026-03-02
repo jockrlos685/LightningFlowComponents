@@ -120,7 +120,26 @@ export default class Datatable extends LightningElement {
     @api columnFlexes = '';
     @api keyField = 'Id';
     @api maxNumberOfRows = 0;
-    @api preSelectedRows = [];
+
+    // v4.3.7 Make Preselected Rows reactive
+    isReactivePreselected = false;
+    @api priorSelectedRows = [];
+    //@api preSelectedRows = [];
+    @api
+    get preSelectedRows() {
+        return this._preSelectedRows || [];
+    }
+    set preSelectedRows(value) {
+        this._preSelectedRows = value;
+        if (this.priorSelectedRows != this._preSelectedRows && this._preSelectedRows != []) {
+            this.isReactivePreselected = true;
+            this.updatePreSelectedRows();
+            this.isReactivePreselected = false;
+        }
+        this.priorSelectedRows = [...this._preSelectedRows];
+    }
+    _preSelectedRows = [];
+
     @api numberOfRowsSelected = 0;
     @api selectedRowKeyValue = '';
     @api numberOfRowsEdited = 0;
@@ -1932,8 +1951,8 @@ export default class Datatable extends LightningElement {
 
     updatePreSelectedRows() {
         // Handle pre-selected records
-        if(!this.outputSelectedRows || this.outputSelectedRows.length === 0) {
-            this.outputSelectedRows = this.preSelectedRows.slice(0, this.maxNumberOfRows);
+        if(!this.outputSelectedRows || this.outputSelectedRows.length === 0 || this.isReactivePreselected) {    // v4.3.7 Make Preselected Rows reactive
+            this.outputSelectedRows = this._preSelectedRows.slice(0, this.maxNumberOfRows);
 
             this.updateNumberOfRowsSelected(this.outputSelectedRows);
             if (this.isUserDefinedObject) {
@@ -1942,15 +1961,15 @@ export default class Datatable extends LightningElement {
             } else {
                 this.dispatchEvent(new FlowAttributeChangeEvent('outputSelectedRows', this.outputSelectedRows));
             }    
-            const selected = JSON.parse(JSON.stringify([...this.preSelectedRows.slice(0, this.maxNumberOfRows)]));
+            const selected = JSON.parse(JSON.stringify([...this._preSelectedRows.slice(0, this.maxNumberOfRows)]));
             let selectedKeys = [];
             selected.forEach(record => {
                 selectedKeys.push(record[this.keyField]);            
             });
             this.allSelectedRowIds = selectedKeys;
             this.visibleSelectedRowIds = selectedKeys;
-            this.preSelectedRows = [];
-            this.dispatchEvent(new FlowAttributeChangeEvent('preSelectedRows', this.preSelectedRows));
+            // this._preSelectedRows = [];  // v4.3.7 Make Preselected Rows reactive
+            this.dispatchEvent(new FlowAttributeChangeEvent('preSelectedRows', this._preSelectedRows));
         }
     }
 

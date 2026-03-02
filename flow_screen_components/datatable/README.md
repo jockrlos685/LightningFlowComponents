@@ -74,6 +74,8 @@ A Permission Set (**USF Flow Screen Component - Datatable**) is included with th
   
   ## 2/28/25 -  Eric Smith -     Version 4.3.7    
 **Updates:**  
+-   Made the Preselected Rows Attribute Reactive  
+  
 **Bug Fixes:** 
 -   Fixed bug where table won't display when the Row Action button has the default label  
   
