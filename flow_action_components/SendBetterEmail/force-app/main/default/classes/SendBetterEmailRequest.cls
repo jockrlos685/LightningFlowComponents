@@ -3,7 +3,7 @@
  * @author            : Alex Edelstein - etal
  * @license
  * @group            SendBetterEmail
- * @since  2021-07-30
+ * @since  2026-04-07
  * @author  Jack D. Pond
  * @License				: LICENSE found in https://github.com/alexed1/LightningFlowComponents
  * Modifications Log
@@ -12,6 +12,7 @@
  * 2.00.02	10-12-2020	Jack D. Pond		Reverted names for backward compatibility
  * 2.00.05	02-12-2021	Jack D. Pond		setTreatTargetObjectAsRecipient Fix: #586,ReplyEmail with SendBetterEmail #595
  * 2.01.06	02-12-2021	Jack D. Pond		Fix remainder of checkboxes default/save Fix: #702,#831
+ * 			07-04-2026	camro				Fix checkbox for send async
  **/
 @SuppressWarnings('PMD')
 public inherited sharing class SendBetterEmailRequest {
@@ -242,4 +243,9 @@ public inherited sharing class SendBetterEmailRequest {
     )
     @AuraEnabled
     public Boolean sendAsync;
+
+
+    @invocableVariable(description='!(Defaults to False)')
+    @AuraEnabled
+    public String cb_sendAsync;
 }
