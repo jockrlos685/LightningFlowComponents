@@ -3,7 +3,7 @@
  * @author            : Alex Edelstein - etal
  * @license
  * @group            SendBetterEmail
- * @since  2026-04-07
+ * @since  2021-07-30
  * @author  Jack D. Pond
  * @License				: LICENSE found in https://github.com/alexed1/LightningFlowComponents
  * Modifications Log
