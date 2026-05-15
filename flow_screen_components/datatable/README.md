@@ -72,7 +72,7 @@ A Permission Set (**USF Flow Screen Component - Datatable**) is included with th
 ---
 # Release Notes 
   
-  ## 2/28/25 -  Eric Smith -     Version 4.3.7    
+  ## 5/15/26 -  Eric Smith -     Version 4.3.7    
 **Updates:**  
 -   Made the Preselected Rows Attribute Reactive  
   
