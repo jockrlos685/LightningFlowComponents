@@ -1,10 +1,11 @@
 /*
- * SI_ManageMSPvalues
+ * JDO_ManageMSPvalues
  * Invocable action for use in Flows. Adds or removes a value from a
  * semicolon-separated multi-select picklist (MSP) string and returns the result.
  *
  * Created by Jose De Oliveira on 2025-07-18
  */
+
 public without sharing class SI_ManageMSPvalues {
     public class MSPRequest {
         @InvocableVariable(label='MSP String' required=true)
