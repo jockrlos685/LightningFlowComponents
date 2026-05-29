@@ -8,7 +8,7 @@
  * Created by Jose De Oliveira on 2025-07-18
  */
 
-public without sharing class SI_ManageMSPvalues {
+public without sharing class JDO_ManageMSPvalues {
     public class MSPRequest {
         @InvocableVariable(label='MSP String' required=false) // allows null values at runtime
         public String mspString;
