@@ -3,12 +3,14 @@
  * Invocable action for use in Flows. Adds or removes a value from a
  * semicolon-separated multi-select picklist (MSP) string and returns the result.
  *
+ * MSP String is not set as required to allow null values during runtime.
+ *
  * Created by Jose De Oliveira on 2025-07-18
  */
 
 public without sharing class SI_ManageMSPvalues {
     public class MSPRequest {
-        @InvocableVariable(label='MSP String' required=true)
+        @InvocableVariable(label='MSP String' required=false) // allows null values at runtime
         public String mspString;
 
         @InvocableVariable(label='Value to Add or Remove' required=true)
